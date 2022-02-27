@@ -49,8 +49,7 @@ public class Seminar01
             Console.WriteLine("Please fill Array [ " + (i+1) + "/" + count + " ]" + ": ");
             array[i] = userinputINT();
         }
-        return array;
-    
+        return array;    
     }
     private static int userinputINT()
     {
@@ -62,7 +61,6 @@ public class Seminar01
             string s = Console.ReadLine();
             result = int.TryParse(s, out num);            
         }
-
         return num;
     }
     private static string evenNums(int[] array)
@@ -85,5 +83,4 @@ public class Seminar01
         }
         return result;
     }
-
 }
