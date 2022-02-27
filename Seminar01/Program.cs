@@ -5,18 +5,18 @@ public class Seminar01
 
     public static void Main(String[] args)
     {
-        int count = 0;
-        int a = 115;
-        int b = 18;
-        int c = 955;
-        dosimpleMath(a, b);
-        domanualMath(a, b);
-        maxOfThree(a, b, c);
-        count = countOfInput();
-        int[] numsarray = getArrayofInt(count);
-        foreach (int i in numsarray) Console.Write(i + ", ");
-        Console.WriteLine("\n" + "Even Numbers are: " + evenNums(numsarray));
-        Console.WriteLine(printAllEvenNums());
+        int count = 0;      //int count for Array
+        int a = 115;    
+        int b = 18;         //2 ints for Problem_01 (Max of 2 Nums)
+        int c = 955;        //int for Problem_02 (Max of 3 Nums)
+        dosimpleMath(a, b);     //Solution Method for Problem_01
+        domanualMath(a, b);     //Alt. Solution Method for Problem_01
+        maxOfThree(a, b, c);        //Solution Method for Problem_02
+        count = countOfInput();     //get count of nums in Array from user
+        int[] numsarray = getArrayofInt(count);     //get Array of custom size and user input for nums
+        foreach (int i in numsarray) Console.Write(i + ", ");       //print Array
+        Console.WriteLine("\n" + "Even Numbers are: " + evenNums(numsarray));       //print string with only even nums in array (Problem_03)
+        Console.WriteLine(printAllEvenNums());      // Solution for Problem_04
     }
     private static void dosimpleMath(int a, int b)
     {
