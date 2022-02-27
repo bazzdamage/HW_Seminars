@@ -15,7 +15,7 @@ public class Seminar01
         count = countOfInput();
         int[] numsarray = getArrayofInt(count);
         foreach (int i in numsarray) Console.Write(i + ", ");
-        Console.WriteLine("Even Numbers are: " + evenNums(numsarray));
+        Console.WriteLine("\n" + "Even Numbers are: " + evenNums(numsarray));
         Console.WriteLine(printAllEvenNums());
     }
     private static void dosimpleMath(int a, int b)
@@ -79,7 +79,7 @@ public class Seminar01
         Console.WriteLine("Please enter N: ");
         int n = userinputINT();
         string result = "";
-        for (int i = 2; i < n; i+=2)
+        for (int i = 2; i <= n; i+=2)
         {
             result = result + i + " ";
         }
