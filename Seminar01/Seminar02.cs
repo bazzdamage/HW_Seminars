@@ -12,58 +12,35 @@ namespace Seminar01
         {
             //ReverseNum(); //Solution for The Problem 10
             //PrintThirdNum(); //Solution for the Problem 13
-            GetDayOfWeek(); //Solution for the Problem 15
+            //GetDayOfWeek(); //Solution for the Problem 15
         }
         private static void ReverseNum()
         {
-            int revnum = 0;
-            int count = 0;
+            int newnum = 0;
             int num = Utility.UserInputINT();
-            int temp = num;
-
-            while (temp > 0)
-            {
-                temp = temp / 10;
-                count++;
-            }
+            int oldnum = num;
 
             while (num > 0)
             {
-                revnum = revnum + (num % 10) * (int) Math.Pow(10,count - 1);
-                num = num / 10;
-                count--;  
-                                
+                newnum = newnum * 10 + num % 10;
+                num /= 10;
             }
-            Console.WriteLine("revnum: " + revnum);
-            Console.WriteLine("count: " + count);
+
+            Console.WriteLine(newnum);
+         
+           
         }
 
         private static void PrintThirdNum()
         {
-            int thirdnum = 0;
-            int count = 0;
             int num = Utility.UserInputINT();
             int temp = num;
-
-            while (temp > 0)
-            {
-                temp = temp / 10;
-                count++;
-            }
-
-            temp = num;
-
-            if (count < 3) Console.WriteLine("Number of digits < 3, nothing to print");
+            
+            if (num < 100) Console.WriteLine("Number of digits < 3, nothing to print");
             else
-            {
-                while (num > 0)
-                {
-                    thirdnum = num % 10;
-                    num = num / 10;
-                    if (count == 3) Console.WriteLine("Third digit in the " + temp + " is: " + thirdnum);
-                    count--;
-                    
-                }
+            { 
+                while (num >= 1000) num /= 10;               
+                Console.WriteLine("Third digit in the " + temp + " is: " + num % 10);
             }
         }
 
