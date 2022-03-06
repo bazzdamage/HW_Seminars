@@ -12,6 +12,7 @@ namespace Seminar01
         {
             //ReverseNum(); //Solution for The Problem 10
             //PrintThirdNum(); //Solution for the Problem 13
+            GetDayOfWeek(); //Solution for the Problem 15
         }
         private static void ReverseNum()
         {
@@ -66,5 +67,18 @@ namespace Seminar01
             }
         }
 
+        private static void GetDayOfWeek()
+        {
+            int day = Utility.UserInputINTRange(1, 7);
+            switch (day)
+            {
+                case <= 5:
+                    Console.WriteLine("Work Harder");
+                    break;
+                case > 6:
+                    Console.WriteLine("You have some extra sleep today");
+                    break;
+            }
+        }
     }
 }

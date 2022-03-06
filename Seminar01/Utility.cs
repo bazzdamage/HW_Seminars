@@ -20,6 +20,20 @@ namespace Seminar01
             }
             return num;
         }
+        public static int UserInputINTRange(int min, int max)
+        {
+            int num = 0;
+            bool result = false;
+            while (result == false)
+            {
+                Console.WriteLine("Number MUST be integer from " + min + " to " + max + " : ");
+                string s = Console.ReadLine();
+                result = int.TryParse(s, out num);
+                if (num >= min && num <= max) result = true;
+                else result = false;
+            }
+            return num;
+        }
         public static int CountOfInput()
         {
             Console.WriteLine("How big Array do you want?: ");
