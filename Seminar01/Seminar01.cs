@@ -25,7 +25,6 @@ namespace Seminars
             Console.WriteLine("\n" + "Even Numbers are: " + EvenNums(numsarray));       //print string with only even nums in array (Problem_03)
             Console.WriteLine(PrintAllEvenNums());      // Solution for Problem_04
         }
-
         private static void DoSimpleMath(int a, int b)
         {
             Console.WriteLine("(Variant 1) Max Of 2 nums are: " + Math.Max(a, b));
@@ -43,7 +42,6 @@ namespace Seminars
             if (c > max) max = c;
             Console.WriteLine("Max Of 3 nums are: " + max);
         }
-
         private static string EvenNums(int[] array)
         {
             string result = "";

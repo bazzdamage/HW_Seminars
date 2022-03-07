@@ -20,6 +20,7 @@ namespace Seminars
             //IsoScalesTriangle(); //Solution for AddProblem 01
             //CalculateAge(); //Solution for AddProblem 02, but all months are equal (31days) for simplify code.
             //CalculateCompoundInterest(); //Solution for AddProblem 03
+            //MinMaxDigitinNum();
 
         }
         private static void ReverseNum()
@@ -38,7 +39,6 @@ namespace Seminars
          
            
         }
-
         private static void PrintThirdNum(int num)
         {
             int temp = num;
@@ -50,7 +50,6 @@ namespace Seminars
                 Console.WriteLine("Third digit in the " + temp + " is: " + num % 10);
             }
         }
-
         private static void GetDayOfWeek()
         {
             int day = Utility.UserInputINTRange(1, 7);
@@ -64,7 +63,6 @@ namespace Seminars
                     break;
             }
         }
-
         private static void MassivePrintThirdNum()
         {
             Console.WriteLine("Input lenght of the Array: ");
@@ -77,7 +75,6 @@ namespace Seminars
 
             for (int i = 0; i < array.Length - 1; i++) PrintThirdNum(array[i]);
         }
-
         private static void IsoScalesTriangle()
         {
             Console.WriteLine("Please input A Side of Triangle: ");
@@ -138,6 +135,35 @@ namespace Seminars
 
             Console.WriteLine($"Your deposit after {temp2} months increased by {deposit - temp} and will make: {deposit}");
 
+        }
+        private static void MinMaxDigitinNum()
+        {
+            int num = Utility.UserInputINT();
+            int rem = 0;
+            int count = 1;
+            int mindig = int.MaxValue;
+            int countmin = 0;
+            int maxdig = int.MinValue;
+            int countmax = 0;
+
+            while (num > 0)
+            {
+                rem = num % 10;
+                num /= 10;
+                if (rem > maxdig)
+                {
+                    maxdig = rem;
+                    countmax = count;
+                }
+                if (rem < mindig)
+                {
+                    mindig = rem;
+                    countmin = count;
+                }
+                count++;
+            }
+            if (countmax > countmin) Console.WriteLine($"Max Digit are: {maxdig} and its position are left, than Min Digit: {mindig}");
+            if (countmin > countmax) Console.WriteLine($"Max Digit are: {maxdig} and its position are right, than Min Digit: {mindig}");
         }
     }
 }
