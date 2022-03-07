@@ -31,7 +31,7 @@ namespace Seminars
 
             while (num > 0)
             {
-                newnum = newnum * 10 + num % 10;
+                newnum *= 10 + (num % 10);
                 num /= 10;
             }
 
