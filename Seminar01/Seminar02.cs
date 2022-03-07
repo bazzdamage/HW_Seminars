@@ -35,9 +35,9 @@ namespace Seminars
                 num /= 10;
             }
 
-            Console.WriteLine(newnum);
-         
-           
+            Console.WriteLine($"Your number: {oldnum}");
+            if (newnum == oldnum) Console.WriteLine($"You Number is Palindrome!!!");
+            Console.WriteLine($"Reversed num is: {newnum}");           
         }
         private static void PrintThirdNum(int num)
         {
