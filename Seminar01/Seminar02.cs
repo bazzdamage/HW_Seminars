@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Seminar01
+namespace Seminars
 {
     public class Seminar02
     {

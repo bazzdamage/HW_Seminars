@@ -1,4 +1,4 @@
-﻿namespace Seminar01;
+﻿namespace Seminars;
 
 public class Solution
 {
