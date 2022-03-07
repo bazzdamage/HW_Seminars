@@ -17,7 +17,9 @@ namespace Seminar01
 
             //Additional Problems
 
-
+            //IsoScalesTriangle(); //Solution for AddProblem 01
+            //CalculateAge(); //Solution for AddProblem 02, but all months are equal (31days) for simplify code.
+            //CalculateCompoundInterest(); //Solution for AddProblem 03
 
         }
         private static void ReverseNum()
@@ -74,6 +76,68 @@ namespace Seminar01
             int[] array = Utility.GetRndNumsArray(a, b, c);
 
             for (int i = 0; i < array.Length - 1; i++) PrintThirdNum(array[i]);
+        }
+
+        private static void IsoScalesTriangle()
+        {
+            Console.WriteLine("Please input A Side of Triangle: ");
+            int a = Utility.UserInputINT();
+            Console.WriteLine("Please input B Side of Triangle: ");
+            int b = Utility.UserInputINT();
+            Console.WriteLine("Please input C Side of Triangle: ");
+            int c = Utility.UserInputINT();
+
+            if (a == b & b == c) Console.WriteLine("This is Equilateral Triangle");
+            else if (a == b | b == c | c == a) Console.WriteLine("This is IsoScales Triangle");
+            else Console.WriteLine("Size of Triangles sides is not equal at all");
+        }
+        private static void CalculateAge()
+        {
+            int dateyear = 2022;
+            int datemonth = 2;
+            int dateday = 1;
+            Console.WriteLine("Please input your birthYEAR: ");
+            int birthyear = Utility.UserInputINTRange(1900, dateyear);
+            Console.WriteLine("Please input your birthMONTH: ");
+            int birthmonth = Utility.UserInputINTRange(1, 12);
+            Console.WriteLine("Please input your birthDAY: ");
+            int birthday = Utility.UserInputINTRange(1, 31);
+
+            birthyear = dateyear - birthyear;
+            birthmonth = datemonth - birthmonth;
+            birthday = dateday - birthday;
+            if (birthmonth < 0)
+            {
+                birthyear -= 1;
+                birthmonth += 12;
+            }
+            if (birthday < 0)
+            {
+                birthmonth -= 1;
+                birthday += 31;
+            }
+            Console.WriteLine($"Your Age are {birthyear} years, {birthmonth} months and {birthday} days");
+            
+        }
+        private static void CalculateCompoundInterest()
+        {
+            Console.WriteLine("Please input your deposit size: ");
+            double deposit = Utility.UserInputDouble();
+            Console.WriteLine("Please input interest rate: ");
+            double proc = Utility.UserInputDoubleRange(0, 100);
+            Console.WriteLine("Please input number of months: ");
+            int months = Utility.UserInputINT();
+            double temp = deposit;
+            int temp2 = months;
+
+            while (months > 0)
+            {
+                deposit += deposit * (proc * 0.01);
+                months--;
+            }
+
+            Console.WriteLine($"Your deposit after {temp2} months increased by {deposit - temp} and will make: {deposit}");
+
         }
     }
 }
