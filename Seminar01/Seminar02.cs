@@ -20,7 +20,7 @@ namespace Seminars
             //IsoScalesTriangle(); //Solution for AddProblem 01
             //CalculateAge(); //Solution for AddProblem 02, but all months are equal (31days) for simplify code.
             //CalculateCompoundInterest(); //Solution for AddProblem 03
-            //MinMaxDigitinNum();
+            //MinMaxDigitinNum(); //Solution for AddProblem 04 - Some Dirty Code ^)
 
         }
         private static void ReverseNum()
