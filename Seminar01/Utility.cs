@@ -8,6 +8,10 @@ namespace Seminar01
 {
     internal class Utility
     {
+        public static void PrintArray(int[] array)
+        {
+            Console.WriteLine(String.Join(", ", array));
+        }
         public static int UserInputINT()
         {
             int num = 0;
@@ -39,6 +43,16 @@ namespace Seminar01
             Console.WriteLine("How big Array do you want?: ");
             int count = Utility.UserInputINT();
             return count;
+        }
+        public static int[] GetRndNumsArray(int count, int minValue, int maxValue)
+        {
+            int[] array = new int[count];
+            Random rand = new Random();
+            for (int i = 0; i < count; i++)
+            {
+                array[i] = rand.Next(minValue, maxValue);
+            }
+            return array;
         }
         public static int[] GetArrayOfInt(int count)
         {

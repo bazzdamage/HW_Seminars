@@ -11,8 +11,14 @@ namespace Seminar01
         public static void Seminar02Solution()
         {
             //ReverseNum(); //Solution for The Problem 10
-            //PrintThirdNum(); //Solution for the Problem 13
+            //PrintThirdNum(Utility.UserInputINT()); //Solution for the Problem 13
+            //MassivePrintThirdNum(); //Solution for the Problen 13, but with array of RND Nums
             //GetDayOfWeek(); //Solution for the Problem 15
+
+            //Additional Problems
+
+
+
         }
         private static void ReverseNum()
         {
@@ -31,9 +37,8 @@ namespace Seminar01
            
         }
 
-        private static void PrintThirdNum()
+        private static void PrintThirdNum(int num)
         {
-            int num = Utility.UserInputINT();
             int temp = num;
             
             if (num < 100) Console.WriteLine("Number of digits < 3, nothing to print");
@@ -56,6 +61,19 @@ namespace Seminar01
                     Console.WriteLine("You have some extra sleep today");
                     break;
             }
+        }
+
+        private static void MassivePrintThirdNum()
+        {
+            Console.WriteLine("Input lenght of the Array: ");
+            int a = Utility.UserInputINT();
+            Console.WriteLine("Input MIN num of RND Range: ");
+            int b = Utility.UserInputINT();
+            Console.WriteLine("Input MAX num of RND Range: ");
+            int c = Utility.UserInputINT();
+            int[] array = Utility.GetRndNumsArray(a, b, c);
+
+            for (int i = 0; i < array.Length - 1; i++) PrintThirdNum(array[i]);
         }
     }
 }
