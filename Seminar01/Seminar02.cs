@@ -10,7 +10,7 @@ namespace Seminars
     {
         public static void Seminar02Solution()
         {
-            //ReverseNum(); //Solution for The Problem 10
+            ReverseNum(); //Solution for The Problem 10
             //PrintThirdNum(Utility.UserInputINT()); //Solution for the Problem 13
             //MassivePrintThirdNum(); //Solution for the Problen 13, but with array of RND Nums
             //GetDayOfWeek(); //Solution for the Problem 15
@@ -31,7 +31,7 @@ namespace Seminars
 
             while (num > 0)
             {
-                newnum *= 10 + (num % 10);
+                newnum = newnum * 10 + (num % 10);
                 num /= 10;
             }
 
