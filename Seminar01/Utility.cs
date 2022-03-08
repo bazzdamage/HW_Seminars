@@ -12,6 +12,15 @@ namespace Seminars
         {
             Console.WriteLine(String.Join(", ", array));
         }
+        public static void PrintArray2D(int[,] array)
+        {
+            for (int row = 0; row < array.GetLength(0); row++)
+            {
+                for (int column = 0; column < array.GetLength(1); column++)
+                    Console.Write(array[row, column] + "\t");
+                Console.WriteLine();
+            }
+        }
         public static int UserInputINT()
         {
             int num = 0;
@@ -77,6 +86,19 @@ namespace Seminars
             for (int i = 0; i < count; i++)
             {
                 array[i] = rand.Next(minValue, maxValue);
+            }
+            return array;
+        }
+        public static int[,] GetRndNumsArray2D(int rows, int columns, int minValue, int maxValue)
+        {
+            int[,] array = new int[rows,columns];
+            Random rand = new Random();
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < columns; j++)
+                {
+                    array[i,j] = rand.Next(minValue, maxValue);
+                }
             }
             return array;
         }
