@@ -17,6 +17,8 @@ namespace Seminars
             //IntersectionOf2Lines(); //Solution for Add.Problem 02 and 04
             //SeasonHighLowTemp(); //Soltion for Add.Problem 05
             //GeneratePassN(); //Solution for Add.Problem 06
+            //AngleToAxis();
+            //ClearArrayFromN();
         }
         private static void PalindromeNum(int num)
         {
@@ -120,7 +122,6 @@ namespace Seminars
             Array.Sort(distances);
             Utility.PrintArray(distances);
         }
-
         private static void IntersectionOf2Lines()
         {
             Random random = new Random();
@@ -270,6 +271,51 @@ namespace Seminars
             Console.WriteLine("Your new pass are SO STRONG: ");
             Console.WriteLine(sb.ToString());
         }
+        private static void AngleToAxis()
+        {
+            Random random = new Random();
+            double x = random.NextDouble() * 100;
+            double y = random.NextDouble() * 100;
 
-    }
+            double angle = (Math.Atan(y / x) * 180)/Math.PI;
+            double angle2 = 180 - angle;
+
+            Console.WriteLine($"Point [ {x} ; {y} ]");
+            Console.WriteLine();
+            Console.WriteLine($"Minimal Angle to oX are: {Math.Min(angle,angle2)}");
+
+        }
+        private static void ClearArrayFromN()
+        {
+            int[] array = Utility.GetRndNumsArray(100, 0, 1000, 0);
+            Console.WriteLine("Please enter the digit to be excluded: ");
+            int n = Utility.UserInputINTRange(0, 9);
+            int counterdel = 0;
+            for (int i = 0; i < array.Length; i++)
+            {
+                int num = array[i];
+                while (num > 0)
+                {
+                    if (num % 10 == n)
+                    {
+                        array[i] = -1;
+                        counterdel++;
+                        break;
+                    }
+                    num /= 10;
+                }
+            }
+            int[] result = new int[array.Length - counterdel];
+            int j = 0;
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (array[i] != -1) result[j++] = array[i];
+            }
+            Console.WriteLine("Result array is: ");
+            Console.WriteLine();            
+            Utility.PrintArray(result);
+            Console.WriteLine();
+            Console.WriteLine($"Elements contain {n} excluded from array {counterdel} times");
+        }
+    }   
 }
