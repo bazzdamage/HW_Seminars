@@ -10,7 +10,10 @@ namespace Seminars
     {
         public static void PrintArray(int[] array)
         {
-            Console.WriteLine(String.Join(", ", array));
+            //Console.WriteLine(String.Join(", ", array));
+            for (int i = 0; i < array.GetLength(0); i++)
+                Console.Write(array[i] + "\t");
+            Console.WriteLine();
         }
         public static void PrintArray2D(int[,] array)
         {
@@ -79,13 +82,13 @@ namespace Seminars
             int count = Utility.UserInputINT();
             return count;
         }
-        public static int[] GetRndNumsArray(int count, int minValue, int maxValue)
+        public static int[] GetRndNumsArray(int count, int minValue, int maxValue, int modificator)
         {
             int[] array = new int[count];
             Random rand = new Random();
             for (int i = 0; i < count; i++)
             {
-                array[i] = rand.Next(minValue, maxValue);
+                array[i] = rand.Next(minValue, maxValue) + modificator;
             }
             return array;
         }

@@ -15,6 +15,7 @@ namespace Seminars
             //TableOfCube(Utility.UserInputINT()); //Solution for Problem 03
             //MinimalPathForNpoints(); //Solution for Add.Problem 01 and 03
             //IntersectionOf2Lines(); //Solution for Add.Problem 02 and 04
+            //SeasonHighLowTemp(); //Soltion for Add.Problem 05
         }
         private static void PalindromeNum(int num)
         {
@@ -59,7 +60,7 @@ namespace Seminars
         private static void MinimalPathForNpoints()
         {
             Random random = new Random();
-            int npoints = random.Next(15) + 5;
+            int npoints = random.Next(5) + 5;
             Console.WriteLine($"Number of points we must visit: {npoints}");
             Console.WriteLine();
             //int npoints = 3;
@@ -68,7 +69,7 @@ namespace Seminars
             int[,] points = new int[npoints,2];
             Console.WriteLine($"Quarter: {numofq}");
             Console.WriteLine();
-            if (numofq == 1)
+            if (numofq == 2)
             {
                 points = Utility.GetRndNumsArray2D(npoints, 2,  1, 100);
                 for (int i = 0; i < points.GetLength(0); i++)
@@ -76,7 +77,7 @@ namespace Seminars
                     points[i, 0] *= -1;
                 }
             }
-            if (numofq == 2)
+            if (numofq == 1)
             {
                 points = Utility.GetRndNumsArray2D(npoints, 2, 1, 100);
             }
@@ -154,8 +155,8 @@ namespace Seminars
                 crossx = (b1 * c2 - b2 * c1) / (a1 * b2 - a2 * b1);
                 crossy = (a2 * c1 - a1 * c2) / (a1 * b2 - a2 * b1);
                 Console.WriteLine($"Lines crosses in point [{crossx} ; {crossy}]");
-                if (crossx < 0 && crossy > 0) Console.WriteLine("Crosspoint lies in 1st Quarter");
-                if (crossx > 0 && crossy > 0) Console.WriteLine("Crosspoint lies in 2st Quarter");
+                if (crossx < 0 && crossy > 0) Console.WriteLine("Crosspoint lies in 2st Quarter");
+                if (crossx > 0 && crossy > 0) Console.WriteLine("Crosspoint lies in 1st Quarter");
                 if (crossx < 0 && crossy < 0) Console.WriteLine("Crosspoint lies in 3st Quarter");
                 if (crossx > 0 && crossy < 0) Console.WriteLine("Crosspoint lies in 4st Quarter");
             }
@@ -164,6 +165,68 @@ namespace Seminars
 
             
 
+
+        }
+        private static void SeasonHighLowTemp()
+        {
+            //Задача 5. Дан массив средних температур (массив заполняется случайно) за последние 10 лет. На ввод подают номер месяца и год начали и конца.
+            //Определить самые высокие и низкие температуры для лета, осени, зимы и весны в заданном промежутке.Если таких температур нет, сообщить, что определить не удалось.
+
+            int yearrange = 10;
+            int[] array = Utility.GetRndNumsArray(yearrange * 12, 0, 60, -30);
+            int wintermax = int.MinValue;
+            int wintermin = int.MaxValue;
+            int springmax = int.MinValue;
+            int springmin = int.MaxValue;
+            int summermax = int.MinValue;
+            int summermin = int.MaxValue;   
+            int autumnmax = int.MinValue;
+            int autumnmin = int.MaxValue;
+
+            Console.WriteLine("Please enter start year (from 1 to 10) for measurement range");
+            int startyear = Utility.UserInputINTRange(1, 10);
+            Console.WriteLine("Please enter end year(from 1 to 10) for measurement range");
+            int endyear = Utility.UserInputINTRange(1, 10);
+            Console.WriteLine("Please enter start month (from 1 to 12) for measurement range");
+            int startmonth = Utility.UserInputINTRange(1, 12);
+            int countmonth = startmonth;
+            
+            for (int i = ((startyear-1)*12); i < array.GetLength(0) - ((yearrange-endyear)*12); i++)
+            {
+                if (countmonth >= 1 & countmonth <= 2 | countmonth == 12)
+                {
+                    if (array[i] > wintermax) wintermax = array[i];
+                    if (array[i] < wintermin) wintermin = array[i];
+                }
+                if (countmonth >= 3 & countmonth <= 5)
+                {
+                    if (array[i] > springmax) springmax = array[i];
+                    if (array[i] < springmin) springmin = array[i];
+                }
+                if (countmonth >= 6 & countmonth <= 8)
+                {
+                    if (array[i] > summermax) summermax = array[i];
+                    if (array[i] < summermin) summermin = array[i];
+                }
+                if (countmonth >= 9 & countmonth <= 11)
+                {
+                    if (array[i] > autumnmax) autumnmax = array[i];
+                    if (array[i] < autumnmin) autumnmin = array[i];
+                }
+                if (countmonth >= 12) countmonth = 1;
+                countmonth++;
+            }
+            Console.WriteLine();
+            Utility.PrintArray(array);
+            Console.WriteLine();
+            Console.WriteLine($"Winter Max Temperature was: {wintermax}");
+            Console.WriteLine($"Winter Min Temperature was: {wintermin}");
+            Console.WriteLine($"Spring Max Temperature was: {springmax}");
+            Console.WriteLine($"Spring Min Temperature was: {springmin}");
+            Console.WriteLine($"Summer Max Temperature was: {summermax}");
+            Console.WriteLine($"Summer Min Temperature was: {summermin}");
+            Console.WriteLine($"Autumn Max Temperature was: {autumnmax}");
+            Console.WriteLine($"Autumn Min Temperature was: {autumnmin}");
 
         }
 

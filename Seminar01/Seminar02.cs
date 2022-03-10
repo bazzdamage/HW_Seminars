@@ -71,7 +71,7 @@ namespace Seminars
             int b = Utility.UserInputINT();
             Console.WriteLine("Input MAX num of RND Range: ");
             int c = Utility.UserInputINT();
-            int[] array = Utility.GetRndNumsArray(a, b, c);
+            int[] array = Utility.GetRndNumsArray(a, b, c, 0);
 
             for (int i = 0; i < array.Length - 1; i++) PrintThirdNum(array[i]);
         }
