@@ -16,6 +16,7 @@ namespace Seminars
             //MinimalPathForNpoints(); //Solution for Add.Problem 01 and 03
             //IntersectionOf2Lines(); //Solution for Add.Problem 02 and 04
             //SeasonHighLowTemp(); //Soltion for Add.Problem 05
+            //GeneratePassN(); //Solution for Add.Problem 06
         }
         private static void PalindromeNum(int num)
         {
@@ -228,6 +229,46 @@ namespace Seminars
             Console.WriteLine($"Autumn Max Temperature was: {autumnmax}");
             Console.WriteLine($"Autumn Min Temperature was: {autumnmin}");
 
+        }
+        private static void GeneratePassN()
+        {
+            Console.WriteLine("Please enter lenght of Password (Minimum four symbols): ");
+            int n = Utility.UserInputINTRange(4, int.MaxValue);
+            StringBuilder sb = new StringBuilder();
+            Random random = new Random();
+
+            sb.Append((char)random.Next(48, 58));
+            sb.Append((char)random.Next(65, 91));
+            sb.Append((char)random.Next(33, 48));
+            sb.Append((char)random.Next(97, 123));
+
+            for (int i = 4; i < n; i++)
+            {
+                switch (random.Next(1, 5))
+                {
+                    case 1:
+                        sb.Append((char)random.Next(48, 58));
+                        break;
+                    case 2:
+                        sb.Append((char)random.Next(65, 91));
+                        break;
+                    case 3:
+                        sb.Append((char)random.Next(33, 48));
+                        break;
+                    case 4:
+                        sb.Append((char)random.Next(97, 123));
+                        break;
+                }
+            }
+            for (int i = sb.Length-1; i >= 1; i--)
+            {
+                int j = random.Next(i + 1);
+                char temp = sb[j];
+                sb[j] = sb[i];
+                sb[i] = temp;
+            }
+            Console.WriteLine("Your new pass are SO STRONG: ");
+            Console.WriteLine(sb.ToString());
         }
 
     }
