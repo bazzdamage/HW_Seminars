@@ -274,15 +274,17 @@ namespace Seminars
         private static void AngleToAxis()
         {
             Random random = new Random();
-            double x = random.NextDouble() * 100;
-            double y = random.NextDouble() * 100;
+            double x = random.NextDouble() * 100 + -50;
+            double y = random.NextDouble() * 100 + -50;
 
             double angle = (Math.Atan(y / x) * 180)/Math.PI;
             double angle2 = 180 - angle;
+            double result = Math.Min(angle, angle2);
+            if (result < 0) result = 360 - (180 + Math.Abs(result));
 
             Console.WriteLine($"Point [ {x} ; {y} ]");
             Console.WriteLine();
-            Console.WriteLine($"Minimal Angle to oX are: {Math.Min(angle,angle2)}");
+            Console.WriteLine($"Minimal Angle to oX are: {result}");
 
         }
         private static void ClearArrayFromN()
