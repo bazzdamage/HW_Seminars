@@ -12,7 +12,7 @@ namespace Seminars
         {
             //Console.WriteLine(String.Join(", ", array));
             for (int i = 0; i < array.GetLength(0); i++)
-                Console.Write(array[i] + "\t");
+                Console.Write("| " + array[i] + " ");
             Console.WriteLine();
         }
         public static void PrintArray2D(int[,] array)
@@ -114,6 +114,54 @@ namespace Seminars
                 array[i] = Utility.UserInputINT();
             }
             return array;
+        }
+        public static string Hex2Binary(int num)
+        {
+            StringBuilder sb = new StringBuilder();
+            while (num > 0)
+            {
+                sb.Insert(0, num % 2);
+                num /= 2;
+            }
+            if (sb.Length % 4 != 0)
+            {
+                for (int i = 0; i < sb.Length % 4; i++)
+                {
+                    sb.Insert(0, "0");
+                }
+            }
+            return sb.ToString();
+        }
+        public static string ReverseString(string s)
+        {
+            char[] arr = s.ToCharArray();
+            Array.Reverse(arr);
+            return new string(arr);
+        }
+        public static string ShuffleString(string s)
+        {
+            Random random = new Random();
+            StringBuilder sb = new StringBuilder(s);
+            for (int i = sb.Length - 1; i >= 1; i--)
+            {
+                int j = random.Next(i + 1);
+                char temp = s[j];
+                sb[j] = s[i];
+                sb[i] = temp;
+            }
+            return new string(sb.ToString());
+        }
+        public static int[] ShuffleArray(int[] arr)
+        {
+            Random random = new Random();
+            for (int i = arr.Length - 1; i >= 1; i--)
+            {
+                int j = random.Next(i + 1);
+                int temp = arr[j];
+                arr[j] = arr[i];
+                arr[i] = temp;
+            }
+            return arr;
         }
     }
 }
