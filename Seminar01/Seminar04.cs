@@ -193,6 +193,7 @@ namespace Seminars
             int count = 1;
             int countMost = 1;
             int countMostIndx = 0;
+            int countSecond = 1;
             Array.Sort(arr);
             Utility.PrintArray(arr);
             for (int i = 0; i < arr.Length - 1; i++)
@@ -204,20 +205,25 @@ namespace Seminars
                     countMostIndx = i;
                     count = 1;
                 }
-                else count = 1;
-            }
-            count = 1;
-            for (int i = countMostIndx + 1; i < arr.Length - 1; i++)
-            {
-                if (arr[i] == arr[i + 1]) count++;
                 else if (count == countMost && count > 1 && countMost > 1)
                 {
-                    if (sb.Length == 0) sb.Append(arr[i]);
-                    else sb.Append(" & " + arr[i]);
+                    if (count > countSecond)
+                    {
+                        sb.Clear();
+                        if (sb.Length == 0) sb.Append(arr[i]);
+                    }
+                    else
+                    {
+                        if (sb.Length == 0) sb.Append(arr[i]);
+                        else sb.Append(" & " + arr[i]);
+                    }
+                    countSecond = count;
                     count = 1;
                 }
                 else count = 1;
             }
+            if (countSecond < countMost) sb.Clear();
+
             Console.WriteLine("Most Common Element in Array is : " + arr[countMostIndx] + "\nit encounters " + countMost + " times");
             if (sb.Length > 0) Console.WriteLine($"Also Elements: {sb.ToString()} occurs in the array the same number of times");
             
