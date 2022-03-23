@@ -16,7 +16,7 @@ namespace Seminars
             //Utility.PrintArray(ArraySortByMod(Utility.GetRndNumsArray(8, 0, 100, -50)));
             //BinaryPalindrome(126);
             //Utility.PrintArray(ArraySqrCountOfOne(Utility.GetRndNumsArray(100, 0, 2, 0)));
-            MostСommonElementInArray(Utility.GetRndNumsArray(100, 0, 100, 0));
+            //MostСommonElementInArray(Utility.GetRndNumsArray(100, 0, 100, 0));
         }
         private static void ConsolePainter() 
         {
@@ -34,7 +34,7 @@ namespace Seminars
             Console.WriteLine("Arrows to navigate; Spacebar to paint █; X,C,V to paint half-tones; Z to paint ▬");
             Console.WriteLine("Backspace to erase");
             Console.WriteLine("Press ENTER to Start, Escape to Exit");
-            
+
             while (true) 
             {
                 key = Console.ReadKey(true);
@@ -194,12 +194,18 @@ namespace Seminars
             int countMost = 1;
             int countMostIndx = 0;
             int countSecond = 1;
+
             Array.Sort(arr);
             Utility.PrintArray(arr);
-            for (int i = 0; i < arr.Length - 1; i++)
+            int length = arr.Length;
+
+            for (int i = 0; i < length - 1; i++)
             {
-                if (arr[i] == arr[i + 1]) count++;
-                else if (count > countMost)
+                if (i == arr.Length - 2 && arr[i] == arr[i + 1]) count++;
+
+                if (i != arr.Length - 2 && arr[i] == arr[i + 1]) count++;
+
+                else if (count > countMost | (i == length - 2 && arr[i + 1] != arr[i]))
                 {
                     countMost = count;
                     countMostIndx = i;
