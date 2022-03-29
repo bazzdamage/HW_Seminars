@@ -15,6 +15,13 @@ namespace Seminars
                 Console.Write("| " + array[i] + " ");
             Console.WriteLine();
         }
+        public static void PrintArray(double[] array)
+        {
+            //Console.WriteLine(String.Join(", ", array));
+            for (int i = 0; i < array.GetLength(0); i++)
+                Console.Write("| " + array[i] + " ");
+            Console.WriteLine();
+        }
         public static void PrintArray2D(int[,] array)
         {
             for (int row = 0; row < array.GetLength(0); row++)
@@ -92,6 +99,16 @@ namespace Seminars
             }
             return array;
         }
+        public static double[] GetRndDoubleNumsArray(int count, double multiplier, double modificator)
+        {
+            double[] array = new double[count];
+            Random rand = new Random();
+            for (int i = 0; i < count; i++)
+            {
+                array[i] = rand.NextDouble() * multiplier + modificator;
+            }
+            return array;
+        }
         public static int[,] GetRndNumsArray2D(int rows, int columns, int minValue, int maxValue)
         {
             int[,] array = new int[rows,columns];
@@ -115,7 +132,7 @@ namespace Seminars
             }
             return array;
         }
-        public static string Hex2Binary(int num)
+        public static string Dec2Binary(int num)
         {
             StringBuilder sb = new StringBuilder();
             while (num > 0)
@@ -162,6 +179,16 @@ namespace Seminars
                 arr[i] = temp;
             }
             return arr;
+        }
+        public static int CountOfDigits(int num)
+        {
+            int count = 0;
+            while (num > 0)
+            {
+                num /= 10;
+                count++;
+            }
+            return count;
         }
     }
 }

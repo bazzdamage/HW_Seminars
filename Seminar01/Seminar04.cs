@@ -149,7 +149,7 @@ namespace Seminars
         }
         private static void BinaryPalindrome(int num)
         {
-            string binary = Utility.Hex2Binary(num);
+            string binary = Utility.Dec2Binary(num);
             int lenght = binary.Length;
 
             string binarybegin = binary.Substring(0, lenght / 2);

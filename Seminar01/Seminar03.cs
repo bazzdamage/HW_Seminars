@@ -14,7 +14,7 @@ namespace Seminars
             //CalcDistanceBetween2Points3D(); //Solution for Problem 02
             //TableOfCube(Utility.UserInputINT()); //Solution for Problem 03
             //MinimalPathForNpoints(); //Solution for Add.Problem 01 and 03
-            //IntersectionOf2Lines(); //Solution for Add.Problem 02 and 04
+            IntersectionOf2Lines(); //Solution for Add.Problem 02 and 04
             //SeasonHighLowTemp(); //Soltion for Add.Problem 05
             //GeneratePassN(); //Solution for Add.Problem 06
             //AngleToAxis();
