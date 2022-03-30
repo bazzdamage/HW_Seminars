@@ -118,13 +118,13 @@ namespace Seminars
         }
         public static int[,] GetRndNumsArray2D(int rows, int columns, int minValue, int maxValue)
         {
-            int[,] array = new int[rows,columns];
+            int[,] array = new int[rows, columns];
             Random rand = new Random();
             for (int i = 0; i < rows; i++)
             {
                 for (int j = 0; j < columns; j++)
                 {
-                    array[i,j] = rand.Next(minValue, maxValue);
+                    array[i, j] = rand.Next(minValue, maxValue);
                 }
             }
             return array;
@@ -196,6 +196,18 @@ namespace Seminars
                 count++;
             }
             return count;
+        }
+        public static string AddZerosToBinary(string binary)
+        {
+            int length = binary.Length;
+            if (length % 4 != 0)
+            {
+                for (int i = 0; i < 4 - length % 4; i++)
+                {
+                    binary = 0 + binary;
+                }
+            }
+            return binary;
         }
     }
 }
