@@ -15,6 +15,13 @@ namespace Seminars
                 Console.Write("| " + array[i] + " ");
             Console.WriteLine();
         }
+        public static void PrintArray(long[] array)
+        {
+            //Console.WriteLine(String.Join(", ", array));
+            for (int i = 0; i < array.GetLength(0); i++)
+                Console.Write("| " + array[i] + " ");
+            Console.WriteLine();
+        }
         public static void PrintArray(double[] array)
         {
             //Console.WriteLine(String.Join(", ", array));
