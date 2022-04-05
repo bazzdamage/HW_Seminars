@@ -20,16 +20,18 @@ namespace Seminars
             //++Задача 1.Написать перевод десятичного числа в двоичное, используя рекурсию.
             //++Задача 2.На вход подаётся поговорка
             string example = "без труда не выловишь и рыбку из пруда";
-
             //  Используя рекурсию, подсчитайте, сколько в поговорке гласных букв.
             //++Задача 3.Дано число N. Используя рекурсию, определите, что оно является степенью числа 3.
 
             //Console.WriteLine(Utility.AddZerosToBinary(Dec2BinRecursive(19)));
             //Console.WriteLine(CountVowels(example));
-            Console.WriteLine(IsPowerOfN(27, 3));
+            //Console.WriteLine(IsPowerOfN(27, 3));
 
             //Задача 1 *.Создайте программу, показывающую текущее время.
             //DigitalClock();
+
+            //EvenIndexesIn2DArray();
+            //MainDiagonal2DArray();
 
 
 
@@ -66,38 +68,46 @@ namespace Seminars
             else return IsPowerOfN(Num, power, result *= power);
         }
         
-
-        private static void DigitalClock()
+        private static void EvenIndexesIn2DArray()
         {
+            Random random = new Random();
 
-            void RenderHour(int hour)
+            int[,] array2 = new int[10, 10];
+            for (int i = 0; i < array2.GetLength(0); i++)
             {
+                for (int j = 0; j < array2.GetLength(1); j++)
+                {
+                    if (i % 2 == 0 && j % 2 == 0)
+                    {
+                        array2[i, j] = random.Next(100);
+                        array2[i, j] *= array2[i,j];
+                    }
+                    else array2[i, j] = random.Next(100);
+                }
+            }
+            Utility.PrintArray2D(array2);
+        }
+        private static void MainDiagonal2DArray()
+        {
+            Random random = new Random();
+            int sum = 0;
 
-            }
-            void RenderMinute(int minute)
+            int[,] array2 = new int[10, 10];
+            for (int i = 0; i < array2.GetLength(0); i++)
             {
-
+                for (int j = 0; j < array2.GetLength(1); j++)
+                {
+                    array2[i, j] = random.Next(100);
+                    if (i == j)
+                    {
+                        Console.WriteLine($" Main Diagonal [{i}] = {array2[i, j]}");
+                        sum += array2[i, j];
+                    }
+                    
+                }
             }
-            void RenderSeconds(int seconds)
-            {
-
-            }
-            void PaintDigit(int digit) 
-            {
-                
-            }
-            while (true)
-            {
-                Console.Clear();
-                Console.WriteLine(DateTime.Now.Hour);
-                Console.WriteLine(DateTime.Now.Minute);
-                Thread.Sleep(100);
-                //Console.Clear();
-
-               
-            }
+            Console.WriteLine($"Sum = {sum}");
             
         }
-        
     }
 }

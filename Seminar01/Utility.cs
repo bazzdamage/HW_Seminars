@@ -38,6 +38,15 @@ namespace Seminars
                 Console.WriteLine();
             }
         }
+        public static void PrintArray2D(double[,] array)
+        {
+            for (int row = 0; row < array.GetLength(0); row++)
+            {
+                for (int column = 0; column < array.GetLength(1); column++)
+                    Console.Write(array[row, column] + "\t");
+                Console.WriteLine();
+            }
+        }
         public static int UserInputINT()
         {
             int num = 0;
@@ -129,7 +138,20 @@ namespace Seminars
             }
             return array;
         }
-        public static int[] GetArrayOfInt(int count)
+        public static double[,] GetRndRealNumsArray2D(int rows, int columns, int multiplier)
+        {
+            double[,] array = new double[rows, columns];
+            Random rand = new Random();
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < columns; j++)
+                {
+                    array[i, j] = rand.NextDouble() * multiplier;
+                }
+            }
+            return array;
+        }
+            public static int[] GetArrayOfInt(int count)
         {
             int[] array = new int[count];
             for (int i = 0; i < count; i++)
