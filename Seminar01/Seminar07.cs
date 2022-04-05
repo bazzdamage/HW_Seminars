@@ -258,7 +258,8 @@ namespace Seminars
                 {
                     for (int j = 0; j < matrix.GetLength(1); j++)
                     {
-                        
+
+                        if (j == 0) Console.Write("|   ");
                         if (matrix[i, j] == -2) Console.Write("██   |   ");
                         else if (matrix[i, j] == -1) Console.Write("░░   |   ");
                         
@@ -271,6 +272,7 @@ namespace Seminars
                     Console.WriteLine();
                     for (int k = 0; k < matrix.GetLength(1); k++)
                     {
+                        if (k == 0) Console.Write("▬▬▬▬");
                         if (k != matrix.GetLength(1) - 1) Console.Write("▬▬▬▬▬▬▬▬▬");
                         else Console.Write("▬▬▬▬▬▬");
                     }
