@@ -102,7 +102,6 @@ namespace Seminars
             {
                 int matrixArows = matrixA.GetLength(0);
                 int matrixAcolumns = matrixA.GetLength(1);
-                int matrixBrows = matrixB.GetLength(0);
                 int matrixBcolumns = matrixB.GetLength(1);
                 int[,] result = new int[matrixArows, matrixBcolumns];
 
