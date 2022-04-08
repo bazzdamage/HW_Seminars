@@ -11,8 +11,9 @@ public class Solution
         //Seminar04.Seminar04Solution();
         //Seminar05.Seminar05Solution();
         //Seminar06.Seminar06Solution();
-        Seminar07.Seminar07Solution();
-        //Seminar08.Seminar08Solution();
+        //Seminar07.Seminar07Solution();
+        Seminar08.Seminar08Solution();
+        Seminar09.Seminar09Solution();
     }
     
 }
