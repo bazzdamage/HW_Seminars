@@ -11,12 +11,12 @@ namespace Seminars
         public static void Seminar09Solution()
         {
             //Задача 64: Задайте значения M и N.Напишите программу, которая выведет все натуральные числа кратные 3 - ём в промежутке от M до N.
-            MultipleOf(2, 55);
+            //MultipleOf(2, 55);
             //Задача 66: Задайте значения M и N.Напишите программу, которая найдёт сумму натуральных элементов в промежутке от M до N.
-            Console.WriteLine($"\n Sum of each num = " + SumOf(1, 4));
+            //Console.WriteLine($"\n Sum of each num = " + SumOf(1, 4));
             //Задача 68: Напишите программу вычисления функции Аккермана с помощью рекурсии. Даны два неотрицательных числа m и n.
             //m = 2, n = 3->A(n, m) = 29
-            Console.WriteLine($"\n Ackerman = " + Ackerman(3, 10));
+            //Console.WriteLine($"\n Ackerman = " + Ackerman(3, 10));
         }
         static void MultipleOf(int start, int end)
         {

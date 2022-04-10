@@ -10,8 +10,8 @@ namespace Seminars
     {
         public static void Seminar08Solution()
         {
-            int[,] array2D = Utility.GetRndNumsArray2D(10, 10, 0, 50);
-            //Utility.PrintArray2D(array2D);
+            int[,] array2D = Utility.GetRndNumsArray2D(15, 10, 0, 50);
+            Utility.PrintArray2D(array2D);
             //Console.WriteLine();
 
 
@@ -31,7 +31,7 @@ namespace Seminars
             //++Задача 2.Дан двумерный массив, заполненный случайными числами от - 9 до 9.Подсчитать частоту вхождения каждого числа в массив, используя словарь.
             //FrequencyDictionaryArray2D(array2D);
             //++Задача 3.Найти минимальный по модулю элемент. Удалить столбец и диагонали, содержащие его.
-            //FindCrossOnMinElementAndThrowOut(array2D);
+            FindCrossOnMinElementAndThrowOut(array2D);
             //++Задача 4.Заполните двумерный массив 3х3 числами от 1 до 9 змейкой.
             //SnakeFillMatrix(30,25);
 
@@ -188,7 +188,9 @@ namespace Seminars
 
             FindMin(array);
             Console.WriteLine($"Min Element index = [{minRowIndex}, {minColumnIndex}]\n");
-            Utility.PrintArray2D(DeleteCross(array, minRowIndex, minColumnIndex));
+            
+            
+            DrawArrayWithEmptyCells(DeleteDiagonals(array, minRowIndex, minColumnIndex));
             
             void FindMin(int[,] array)
             {
@@ -204,20 +206,95 @@ namespace Seminars
                     }
                 }
             }
-            int[,] DeleteCross(int[,] array, int minRowIndex, int minColumnIndex)
+            void DrawArrayWithEmptyCells(int[,] array)
             {
-                int[,] result = new int[array.GetLength(0) - 1, array.GetLength(1) - 1];
-                int iMod = 0;
-                int jMod = 0;
-                for (int i = 0; i < result.GetLength(0); i++)
+                for (int i = 0; i < array.GetLength(0); i++)
                 {
-                    for (int j = 0; j < result.GetLength(1); j++)
+                    for (int j = 0; j < array.GetLength(1); j++)
                     {
-                        if (i == minRowIndex | i > minRowIndex) iMod = 1;
-                        else iMod = 0;
-                        if (j == minColumnIndex | j > minColumnIndex) jMod = 1;
-                        else jMod = 0;
-                        result[i, j] = array[i + iMod, j + jMod];
+                        if (j == 0) Console.Write("|   ");
+                        if (array[i, j] >= 0 & array[i, j] < 10) Console.Write("0" + array[i, j] + "   |   ");
+                        if (array[i, j] >= 10 & array[i, j] < 100) Console.Write(array[i, j] + "   |   ");
+                        if (array[i, j] == - 1) Console.Write("  " + "   |   ");
+                    }
+                    Console.WriteLine();
+                    for (int k = 0; k < array.GetLength(1); k++)
+                    {
+                        if (k == 0) Console.Write("▬▬▬▬");
+                        if (k != array.GetLength(1) - 1) Console.Write("▬▬▬▬▬▬▬▬▬");
+                        else Console.Write("▬▬▬▬▬▬");
+                    }
+                    Console.WriteLine();
+                }
+            }
+            // вариант 1 - кто-то не прочитал условия ;)
+            //int[,] DeleteCross(int[,] array, int minRowIndex, int minColumnIndex)
+            //{
+            //    int[,] result = new int[array.GetLength(0) - 1, array.GetLength(1) - 1];
+            //    int iMod = 0;
+            //    int jMod = 0;
+            //    for (int i = 0; i < result.GetLength(0); i++)
+            //    {
+            //        for (int j = 0; j < result.GetLength(1); j++)
+            //        {
+            //            if (i == minRowIndex | i > minRowIndex) iMod = 1;
+            //            else iMod = 0;
+            //            if (j == minColumnIndex | j > minColumnIndex) jMod = 1;
+            //            else jMod = 0;
+            //            result[i, j] = array[i + iMod, j + jMod];
+            //        }
+            //    }
+            //    return result;
+
+            // вариант 2 - удаление диагоналей и колонки "физически", создавая массив массивов
+            //int [][] DeleteDiagonals(int[,] array, int minRowIndex, int minColumnIndex) 
+            //{
+            //    int shrinkColumns = 1;
+            //    int[][] jaggedarray = new int[array.GetLength(0)][];
+            //    for (int i = 0; i < jaggedarray.Length; i++)
+            //    {
+            //        int shrinkCount = 0;
+
+            //        if (i != minRowIndex && minColumnIndex - Math.Abs(minRowIndex - i) >= 0) shrinkColumns++;
+            //        if (i != minRowIndex && minColumnIndex + Math.Abs(minRowIndex - i) < array.GetLength(1)) shrinkColumns++;
+            //        jaggedarray[i] = new int[array.GetLength(1) - shrinkColumns];
+            //        shrinkColumns = 1;
+
+            //        for (int j = 0; j < array.GetLength(1); j++)
+            //        {
+            //            if (j == minColumnIndex)
+            //            {
+            //                shrinkCount++;
+            //            }
+            //            else if (j == minColumnIndex - Math.Abs(minRowIndex - i)
+            //                || j == minColumnIndex + Math.Abs(minRowIndex - i))
+            //            {
+            //                shrinkCount++;
+            //            }
+            //            else jaggedarray[i][j - shrinkCount] = array[i, j];
+            //        }
+            //    }
+            //    return jaggedarray;
+            //}
+
+            // вариант 3 - "скрытие" удаленных ячеек для наглядности
+            int[,] DeleteDiagonals(int[,] array, int minRowIndex, int minColumnIndex)
+            {
+                int[,] result = new int[array.GetLength(0), array.GetLength(1)];
+                for (int i = 0; i < array.GetLength(0); i++)
+                {
+                    for (int j = 0; j < array.GetLength(1); j++)
+                    {
+                        if (j == minColumnIndex)
+                        {
+                            result[i, j] = -1;
+                        }
+                        else if (j == minColumnIndex - Math.Abs(minRowIndex - i)
+                            || j == minColumnIndex + Math.Abs(minRowIndex - i))
+                        {
+                            result[i, j] = -1;
+                        }
+                        else result[i,j] = array[i, j];
                     }
                 }
                 return result;

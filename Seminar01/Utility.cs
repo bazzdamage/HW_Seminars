@@ -38,6 +38,15 @@ namespace Seminars
                 Console.WriteLine();
             }
         }
+        public static void PrintArray2D(int[][] array)
+        {
+            for (int row = 0; row < array.Length; row++)
+            {
+                for (int column = 0; column < array[row].Length; column++)
+                    Console.Write(array[row][column] + "\t");
+                Console.WriteLine();
+            }
+        }
         public static void PrintArray2D(double[,] array)
         {
             for (int row = 0; row < array.GetLength(0); row++)
