@@ -10,8 +10,8 @@ namespace Seminars
     {
         public static void Seminar08Solution()
         {
-            int[,] array2D = Utility.GetRndNumsArray2D(15, 10, 0, 50);
-            Utility.PrintArray2D(array2D);
+            //int[,] array2D = Utility.GetRndNumsArray2D(15, 10, 0, 50);
+            //Utility.PrintArray2D(array2D);
             //Console.WriteLine();
 
 
@@ -31,7 +31,7 @@ namespace Seminars
             //++Задача 2.Дан двумерный массив, заполненный случайными числами от - 9 до 9.Подсчитать частоту вхождения каждого числа в массив, используя словарь.
             //FrequencyDictionaryArray2D(array2D);
             //++Задача 3.Найти минимальный по модулю элемент. Удалить столбец и диагонали, содержащие его.
-            FindCrossOnMinElementAndThrowOut(array2D);
+            //FindCrossOnMinElementAndThrowOut(array2D);
             //++Задача 4.Заполните двумерный массив 3х3 числами от 1 до 9 змейкой.
             //SnakeFillMatrix(30,25);
 
