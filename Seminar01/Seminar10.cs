@@ -10,37 +10,45 @@ namespace Seminars
     {
         public static void Seminar10Solution()
         {
-            int number = 3456;
-            //ReverseNumberRecursive(number);
-            //SequenceOfNumbers(10);
+            int num = 123456789;
+            //++1.Дано число n. Получите число, записанное в обратном порядке.
+            //ReverseNumRecursivePrint(num);
+            //++2.Дана монотонная последовательность, в которой каждое натуральное число n встречается ровно n раз: 1, 2, 2, 3, 3, 3, 4, 4, 4, 4, ... Дано число m.Выведите первые m членов этой последовательности.
+            //SequenceOfNumbers(40);
+            //++3.Дано натуральное число n > 1.Вывести все простые множители данного числа.
             //SimpleMultiplyers(10);
+
             //AxorB();
+
+            //Задача 1.Даны два числа a, b.Сложите их, используя только операции инкремента и декремента.
+            //Console.WriteLine(SumIncremently(5, 10));
+            //Задача 2.Дана последовательность натуральных чисел.Определите значение второго по величине элемента в этой последовательности.
+            //FindSecondMax();
+            //Задача 3.Дан массив, состоящий из случайных целых чисел.Дано число M.Выведите случайное подмножество массива, сумма элементов в котором не превосходит M.
             
+            FindCombinationsOfSumRec(6, 50);
         }
-        
-        static void ReverseNumberRecursive(int currentNum, int result = 0)
+
+        static int ReverseNumRecursive(int num, int result = 0)
         {
-            if(currentNum == 0)
-            {
-                Console.Write(" >> " + result);
-                return;
-            }
-            result = result * 10 + currentNum % 10;
-            currentNum /= 10;
-            ReverseNumberRecursive(currentNum, result);
+            if (num == 0) return result;
+            result = result * 10 + num % 10;
+            num /= 10;
+            return ReverseNumRecursive(num, result);
         }
-        static void SequenceOfNumbers(int countAll, int currentNum = 1, int countNum = 0)
+        static void ReverseNumRecursivePrint(int num)
         {
-            if (countAll == 0) return;
-            countAll--;
-            countNum++;
-            if (currentNum < countNum)
-            {
-                currentNum++;
-                countNum = 1;
-            }
-            Console.WriteLine(currentNum + "\t");
-            SequenceOfNumbers(countAll, currentNum, countNum);
+            ReverseNumRecursive(num);
+            Console.WriteLine($"Initial num = {num}");
+            Utility.SloMoPrint("...reversing...", 100);
+            Utility.SloMoPrint(ReverseNumRecursive(num), 100);
+        }
+        static void SequenceOfNumbers(int count, int num = 1, int seq = 1)
+        {
+            if (count == 0) return;
+            Console.Write(num + " ");
+            if (seq < num) SequenceOfNumbers(--count, num, seq + 1);
+            else SequenceOfNumbers(--count, num + 1);
         }
         static void SimpleMultiplyers(int currentNum, int mult = 1)
         {
@@ -48,43 +56,78 @@ namespace Seminars
             mult++;
             if (currentNum % mult == 0)
             {
-                Console.Write(mult + "\t");
-                currentNum /= mult;
-                mult = 1;
+                Console.Write(mult + " ");
+                SimpleMultiplyers(currentNum / mult);
             }
-            SimpleMultiplyers(currentNum, mult);
-
+            else SimpleMultiplyers(currentNum, mult);
         }
         static void AxorB()
         {
             int[] arrayA = { 1, 3, 5, 7 };
             int[] arrayB = { 4, 5, 6, 7 };
-            int[] result = new int[arrayA.Length + arrayB.Length];
-            int resultcount = 0;
-            bool flag = false;
-
-            for (int i = 0; i < arrayA.Length; i++)
-            {
-                for (int j = 0; j < arrayB.Length; j++)
-                {
-                    if (arrayA[i] != arrayB[j])
-                    {
-                        result[resultcount] = arrayB[j];
-                        resultcount++;
-                    }
-                    if (arrayA[i] == arrayB[j]) flag = true;
-                }
-                if (flag == false)
-                {
-                    result[resultcount] = arrayA[i];
-                    resultcount++;
-                }
-            }
+            HashSet<int> xor = new HashSet<int>();
+            for (int i = 0; i < arrayA.Length; i++) xor.Add(arrayA[i]);
+            for (int i = 0; i < arrayB.Length; i++) xor.Add(arrayB[i]);
+            var result = xor.ToArray();
             Utility.PrintArray(result);
         }
-        static void ReplaceElements()
+        static int SumIncremently(int a, int b, int sumcount = 0)
         {
-            int[] arrayA = {};
+            if (sumcount == b) return a;
+            else return SumIncremently(a + 1, b, ++sumcount);
+        }
+        static void FindSecondMax()
+        {
+            int[] array = Utility.GetRndNumsArray(30, 0, 100, 0);
+            int max = 0;
+            int secmax = 0;
+            MaxRec();
+            Utility.PrintArray(array);
+            Console.WriteLine();
+            Console.WriteLine($"max = {max}, secmax = {secmax}");
+
+            void MaxRec (int count = 0)
+            {
+                if (count == array.Length - 1) return;
+                else if (array[count] > max)
+                {
+                    secmax = max;
+                    max = array[count];
+                }
+                MaxRec(count + 1);
+            }
+        }
+        static void FindCombinationsOfSumRec(int arraysize, int maxsum)
+        {
+            int[] array = Utility.GetRndNumsArray(arraysize, 1, 50, 0);
+            int[] sum = new int[arraysize];
+            int n = 1;
+            int templength = 0;
+            for (int i = 1; i <= arraysize; i++)
+            {
+                FindCombinationsOfSum(maxsum, templength + i);
+            }
+            void FindCombinationsOfSum(int maxsum, int templength, int length = 0, int tempsum = 0)
+            {
+                if (length == templength)
+                {
+                    foreach (int i in sum) tempsum += i;
+
+                    if (tempsum <= maxsum)
+                    {
+                        Console.Write($"{n++}. sum of elements = {tempsum}\n");
+                        Utility.PrintArray(sum);
+                        tempsum = 0;
+                    }
+                    return;
+                }
+                for (int i = 0; i < array.Length; i++)
+                {
+                    sum[length] = array[i];
+                    FindCombinationsOfSum(maxsum, templength, length + 1, tempsum);
+                }
+            }
+                
         }
     }
 }

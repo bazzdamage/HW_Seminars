@@ -13,7 +13,7 @@ public class Solution
         //Seminar06.Seminar06Solution();
         //Seminar07.Seminar07Solution();
         //Seminar08.Seminar08Solution();
-        Seminar09.Seminar09Solution();
+        //Seminar09.Seminar09Solution();
         Seminar10.Seminar10Solution();
         Seminar11.Seminar11Solution();
     }

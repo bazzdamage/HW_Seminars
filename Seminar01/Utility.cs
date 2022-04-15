@@ -240,5 +240,24 @@ namespace Seminars
             }
             return binary;
         }
+        public static void SloMoPrint(string str, int delay)
+        {
+            for (int i = 0; i < str.Length; i++)
+            {
+                Console.Write(str[i]);
+                System.Threading.Thread.Sleep(delay);
+            }
+            Console.WriteLine();
+        }
+        public static void SloMoPrint(int num, int delay)
+        {
+            string str = num.ToString();
+            for (int i = 0; i < str.Length; i++)
+            {
+                Console.Write(str[i]);
+                System.Threading.Thread.Sleep(delay);
+            }
+            Console.WriteLine();
+        }
     }
 }
