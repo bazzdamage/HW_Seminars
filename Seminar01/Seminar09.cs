@@ -29,7 +29,7 @@ namespace Seminars
             //Напишите рекурсивный метод, который перебирает все комбинации паролей. 
 
             //Задача 3.Даны натуральные числа a и b.Рекурсивно описать функцию возведения числа a в степень b, используя только операцию инкрементирования(“++”).
-            ..Console.WriteLine("Степень = " + PowIncremently(3, 4));
+            //Console.WriteLine("Степень = " + PowIncremently(3, 4));
         }
         static void MultipleOf(int start, int end)
         {
