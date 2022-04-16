@@ -19,8 +19,14 @@ namespace Seminars
             //Задача 2.Двумерный массив заполнен случайными натуральными числами от 1 до 10.Найдите количество элементов, значение которых больше 5, и их сумму.
             CountOfElementsAndSum(array, 50);
             //Задача 3.Напишите рекурсивный метод, который принимает номер года и определяет, является ли он високосным или нет.
-            int year = 1604;
+            int year = 1992;
             Console.Write($"\nIs Year {year} are Leap?\nAnswer is: ");
+            Console.WriteLine(IsYearLeap(year));
+            int year2 = 1700;
+            Console.Write($"\nIs Year {year2} are Leap?\nAnswer is: ");
+            Console.WriteLine(IsYearLeap(year2));
+            int year3 = 2000;
+            Console.Write($"\nIs Year {year3} are Leap?\nAnswer is: ");
             Console.WriteLine(IsYearLeap(year));
         }
         static void CountOfElementsAndSum(int[] array, int n)
@@ -38,8 +44,7 @@ namespace Seminars
         }
         static bool IsYearLeap(int year)
         {
-            if (year % 400 == 0) return IsYearLeap(year / 400);
-            else if (year % 100 == 0) return IsYearLeap(year / 100);
+            if (year % 400 == 0 || year % 100 == 0) return IsYearLeap(year / 100);
             else if (year % 4 == 0) return true;
             else return false;
         }
