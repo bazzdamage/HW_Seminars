@@ -20,13 +20,14 @@ namespace Seminars
 
             //AxorB();
 
-            //Задача 1.Даны два числа a, b.Сложите их, используя только операции инкремента и декремента.
+            //++Задача 1.Даны два числа a, b.Сложите их, используя только операции инкремента и декремента.
             //Console.WriteLine(SumIncremently(5, 10));
-            //Задача 2.Дана последовательность натуральных чисел.Определите значение второго по величине элемента в этой последовательности.
+            //++Задача 2.Дана последовательность натуральных чисел.Определите значение второго по величине элемента в этой последовательности.
             //FindSecondMax();
-            //Задача 3.Дан массив, состоящий из случайных целых чисел.Дано число M.Выведите случайное подмножество массива, сумма элементов в котором не превосходит M.
-            
-            FindCombinationsOfSumRec(6, 50); // Выводит все возможные комбинации, укладывающиеся в сумму (второй параметр метода). Пока он выводит все варианты перестановок. (как с подбором пароля)
+            //++Задача 3.Дан массив, состоящий из случайных целых чисел.Дано число M.Выведите случайное подмножество массива, сумма элементов в котором не превосходит M.
+
+            //FindCombinationsOfSumRec(6, 50); // Выводит все возможные комбинации, укладывающиеся в сумму (второй параметр метода). Пока он выводит все варианты перестановок. (как с подбором пароля)
+            FindReplacingCombOfSum(10, 100); // Наконец то выводит то что я хотел - неповторяющиеся всевозможные комбинации чисел из массива с суммой меньше maxsum (второе значение в методе)
         }
 
         static int ReverseNumRecursive(int num, int result = 0)
@@ -128,6 +129,42 @@ namespace Seminars
                 }
             }
                 
+        }
+        static void FindReplacingCombOfSum(int arraysize, int maxsum)
+        {
+            int[] array = Utility.GetRndNumsArray(arraysize, 1, 50, 0);
+            int n = 1;
+            HashSet<string> combinations = new HashSet<string>(arraysize*arraysize*arraysize);
+
+            permute(array, 0, arraysize, maxsum);
+
+            foreach (string comb in combinations) Console.WriteLine($"{n++}. " + comb);
+            void permute(int[] array, int start, int end, int maxsum)
+            {
+                if (start == end)
+                {
+                    int tempsum = 0;
+                    string print = "|  ";
+                    for (int i = 0; i < array.Length; i++)
+                    {
+                        if (tempsum + array[i] < maxsum & i != array.Length)
+                        {
+                            print += array[i] + "  |  ";
+                            tempsum += array[i];
+                        }
+                        combinations.Add(print + $"\nSum = {tempsum} and {maxsum - tempsum} to MAX sum");
+                    }
+                }
+                else
+                {
+                    for (int i = start; i < end; i++)
+                    {
+                        (array[start], array[i]) = (array[i], array[start]);
+                        permute(array, start + 1, end, maxsum);
+                        (array[start], array[i]) = (array[i], array[start]);
+                    }
+                }
+            }
         }
     }
 }
