@@ -136,10 +136,10 @@ namespace Seminars
             int n = 1;
             HashSet<string> combinations = new HashSet<string>(arraysize*arraysize*arraysize);
 
-            permute(array, 0, arraysize, maxsum);
+            Permute(array, 0, arraysize, maxsum);
 
             foreach (string comb in combinations) Console.WriteLine($"{n++}. " + comb);
-            void permute(int[] array, int start, int end, int maxsum)
+            void Permute(int[] array, int start, int end, int maxsum)
             {
                 if (start == end)
                 {
@@ -160,7 +160,7 @@ namespace Seminars
                     for (int i = start; i < end; i++)
                     {
                         (array[start], array[i]) = (array[i], array[start]);
-                        permute(array, start + 1, end, maxsum);
+                        Permute(array, start + 1, end, maxsum);
                         (array[start], array[i]) = (array[i], array[start]);
                     }
                 }
