@@ -11,6 +11,7 @@ namespace Seminars
         public static void Seminar11Solution()
         {
             int[,] knightBoard = new int[8, 8];
+            int[,] triangleArray = Utility.GetRndNumsArray2D(10, 10, 1, 100);
             ////Задача 1.На вход подуются два числа n и m, такие, что n<m. Заполните массив случайными числами из промежутка [n, m].
             //int a = 100;
             //int b = 20;
@@ -36,9 +37,9 @@ namespace Seminars
 
             //Доп.задачи
             //Задача 1.Двумерная матрица заполнена натуральными числами. Найти тройку чисел, для которых площадь треугольника со сторонами, определяемыми данной тройкой, будет максимальна.
-
+            //LargestTriangle(triangleArray);
             //Задача 2.Шахматный конь стоит на поле с координатами(x1, y1). Сколько ходов ему потребуется сделать, чтобы забрать неподвижную фигуру на поле(x2, y2)?
-            LeePathForKnight(knightBoard, 0, 0, 5, 5);
+            //LeePathForKnight(knightBoard, 0, 0, 5, 5);
             //Задача 3.Дан отсортированный по возрастанию двумерный массив Matrix.На вход подаётся число A.
             //Напишите метод, реализующий поиск в массиве элементов, равных A.Выведите координаты элемента(при выводе нумерация строк и столбцов считается с единицы).
 
@@ -149,30 +150,7 @@ namespace Seminars
             }
                 Utility.PrintArray2D(jaggedresult);
         }
-
-        private static int[,] MatrixForLee(int[,] matrix)              // Generate walls outside the initial matrix
-        {
-            int[,] leematrix = new int[matrix.GetLength(0) + 2, matrix.GetLength(1) + 2];
-
-            for (int i = 0; i < leematrix.GetLength(0); i++)
-            {
-                for (int j = 0; j < leematrix.GetLength(1); j++)
-                {
-                    if (i == 0 | i == leematrix.GetLength(0) - 1) leematrix[i, j] = -2;
-                    else if (j == 0 | j == leematrix.GetLength(1) - 1) leematrix[i, j] = -2;
-                }
-            }
-            for (int i = 0; i < matrix.GetLength(0); i++)
-            {
-                for (int j = 0; j < matrix.GetLength(1); j++)
-                {
-                    if (matrix[i, j] == 0) leematrix[i + 1, j + 1] = -1;
-                    if (matrix[i, j] == 1) leematrix[i + 1, j + 1] = -2;
-                }
-            }
-            return leematrix;
-        }
-        private static void LeePathForKnight(int[,] matrix, int startrow, int startcol, int endrow, int endcol)
+        static void LeePathForKnight(int[,] matrix, int startrow, int startcol, int endrow, int endcol)
         {
 
             matrix = MatrixForLee(matrix); //Generate new complex matrix with wall
@@ -265,6 +243,66 @@ namespace Seminars
                     Console.WriteLine();
                 }
             }
+            int[,] MatrixForLee(int[,] matrix)              // Generate walls outside the initial matrix
+            {
+                int[,] leematrix = new int[matrix.GetLength(0) + 2, matrix.GetLength(1) + 2];
+
+                for (int i = 0; i < leematrix.GetLength(0); i++)
+                {
+                    for (int j = 0; j < leematrix.GetLength(1); j++)
+                    {
+                        if (i == 0 | i == leematrix.GetLength(0) - 1) leematrix[i, j] = -2;
+                        else if (j == 0 | j == leematrix.GetLength(1) - 1) leematrix[i, j] = -2;
+                    }
+                }
+                for (int i = 0; i < matrix.GetLength(0); i++)
+                {
+                    for (int j = 0; j < matrix.GetLength(1); j++)
+                    {
+                        if (matrix[i, j] == 0) leematrix[i + 1, j + 1] = -1;
+                        if (matrix[i, j] == 1) leematrix[i + 1, j + 1] = -2;
+                    }
+                }
+                return leematrix;
+            }
         }
+        static void LargestTriangle(int[,] array)
+        {
+            Utility.PrintArray2D(array);
+            Console.WriteLine();
+            List<int> maximums = new List<int>();
+            FindMax(array, maximums);
+            FindMax(array, maximums);
+            FindMax(array, maximums);
+            void FindMax(int[,] array, List<int> maximums)
+            {
+                int maxNum = Int32.MinValue;
+                for (int i = 0; i < array.GetLength(0); i++)
+                    for (int j = 0; j < array.GetLength(1); j++)
+                        if (array[i, j] > maxNum & !maximums.Contains(array[i,j]))
+                        {
+                            maxNum = array[i, j];
+                        }
+                maximums.Add(maxNum);
+            }
+            var sides = new Int32[maximums.Count];
+            
+            int halfperimeter = 0;
+            foreach (var nums in maximums) halfperimeter += nums;
+            halfperimeter /= 2;
+            
+            int triangleSquare = 1;
+            for (int i = 0; i < maximums.Count; i++)
+            {
+                sides[i] = maximums[i];
+                Console.WriteLine($"Side {i} of triangle = {maximums[i]}");
+                triangleSquare *= (halfperimeter - maximums[i]);
+            }
+            triangleSquare = (int)Math.Sqrt(triangleSquare * halfperimeter);
+            Console.WriteLine($"\nSquare of Triangle = {triangleSquare}");
+
+        }
+
+        
     }
 }
