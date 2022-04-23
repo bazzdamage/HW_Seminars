@@ -12,6 +12,7 @@ namespace Seminars
         {
             int[,] knightBoard = new int[8, 8];
             int[,] triangleArray = Utility.GetRndNumsArray2D(10, 10, 1, 100);
+            int[,] array = Utility.GetRndNumsArray2D(20, 20, 0, 10);
             //++Задача 1.На вход подуются два числа n и m, такие, что n<m. Заполните массив случайными числами из промежутка [n, m].
             //int a = 100;
             //int b = 20;
@@ -43,11 +44,16 @@ namespace Seminars
             //++Задача 2.Шахматный конь стоит на поле с координатами(x1, y1). Сколько ходов ему потребуется сделать, чтобы забрать неподвижную фигуру на поле(x2, y2)?
             //LeePathForKnight(knightBoard, 0, 0, 5, 5);
 
-            //Задача 3.Дан отсортированный по возрастанию двумерный массив Matrix.На вход подаётся число A.
+            //++Задача 3.Дан отсортированный по возрастанию двумерный массив Matrix.На вход подаётся число A.
             //Напишите метод, реализующий поиск в массиве элементов, равных A.Выведите координаты элемента(при выводе нумерация строк и столбцов считается с единицы).
-
+            Random random = new Random();
+            int element = random.Next(11);
+            FindSimilarElements(array, element);
 
         }
+
+        
+
         class Point
         {
             public int row { get; set; }
@@ -306,7 +312,16 @@ namespace Seminars
             Console.WriteLine($"\nSquare of Triangle = {triangleSquare}");
 
         }
+        private static void FindSimilarElements(int[,] array, int element)
+        {
+            Console.WriteLine($"Element, similar to {element} locate on: ");
+            for (int i = 0; i < array.GetLength(0); i++)
+                for (int j = 0; j < array.GetLength(1); j++)
+                {
+                    if (array [i,j] == element) 
+                        Console.WriteLine($"[{i + 1} row | {j + 1} column]");
+                }
+        }
 
-        
     }
 }
