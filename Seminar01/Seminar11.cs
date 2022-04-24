@@ -48,8 +48,37 @@ namespace Seminars
             //Напишите метод, реализующий поиск в массиве элементов, равных A.Выведите координаты элемента(при выводе нумерация строк и столбцов считается с единицы).
             Random random = new Random();
             int element = random.Next(11);
-            FindSimilarElements(array, element);
+            //FindSimilarElements(array, element);
 
+            //76.Есть число N. Скольно групп M, можно получить при разбиении всех чисел на группы, так чтобы в одной группе все числа были взаимно просты.
+
+            //Например для N = 50, M получается 6
+
+            //Одно из решений:
+            //```
+            //Группа 1: 1
+            //Группа 2: 2 3 11 13 17 19 23 29 31 37 41 43 47
+            //Группа 3: 4 6 9 10 14 15 21 22 25 26 33 34 35 38 39 46 49
+            //Группа 4: 8 12 18 20 27 28 30 42 44 45 50
+            //Группа 5: 7 16 24 36 40
+            //Группа 6: 5 32 48
+            //```
+            //Ещё одно решение:
+
+            //```
+            //Группа 1: 1
+            //Группа 2: 2 3 5 7 11 13 17 19 23 29 31 37 41 43 47
+            //Группа 3: 4 6 9 10 14 15 21 22 25 26 33 34 35 38 39 46 49
+            //Группа 4: 8 12 18 20 27 28 30 42 44 45 50
+            //Группа 5: 16 24 36 40
+            //Группа 6: 32 48
+
+            //```
+            //Задача: найти M при заданном N и получить одно из разбиений на группы
+            //N ≤ 10²⁰
+
+            FindGroupsOfSimpleNums(100);
+            Console.WriteLine();
         }
 
         
@@ -312,7 +341,7 @@ namespace Seminars
             Console.WriteLine($"\nSquare of Triangle = {triangleSquare}");
 
         }
-        private static void FindSimilarElements(int[,] array, int element)
+        static void FindSimilarElements(int[,] array, int element)
         {
             Console.WriteLine($"Element, similar to {element} locate on: ");
             for (int i = 0; i < array.GetLength(0); i++)
@@ -322,6 +351,48 @@ namespace Seminars
                         Console.WriteLine($"[{i + 1} row | {j + 1} column]");
                 }
         }
+        static void FindGroupsOfSimpleNums(int n)
+        {
+            List<int> remaining = new List<int>();
+            for (int i = 1; i <= n; i++) remaining.Add(i);
+            List<List<int>> groups = new List<List<int>>();
 
+            groups.Add(new List<int>());
+            groups[0].Add(1);
+            remaining.Remove(1);
+            for (int i = 2; i < n; i*=2)
+            {
+                groups.Add(new List<int>());
+                int lastList = groups.Count - 1;
+                groups[lastList].Add(i);
+                remaining.Remove(i);
+                for (int j = i; j <= n; j++)
+                {
+                    if (j % i != 0 & remaining.Contains(j))
+                    {
+                        groups[lastList].Add(j);
+                        remaining.Remove(j);
+                    }
+                }
+                for (int k = 0; k < groups[lastList].Count; k++)
+                {
+                    for (int m = k; m < groups[lastList].Count - 1; m++)
+                    {
+                        if (groups[lastList][m + 1] % groups[lastList][k] == 0)
+                        {
+                            remaining.Add(groups[lastList][m + 1]);
+                            groups[lastList].Remove(groups[lastList][m + 1]);
+                            m--;
+                        }
+                    }
+                }
+            }
+            foreach (List<int> sp in groups)
+            {
+                foreach (int i in sp)
+                    Console.Write(i + " ");
+                Console.WriteLine();
+            }
+        }
     }
 }
